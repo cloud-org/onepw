@@ -176,7 +176,7 @@ func (pw *Password) inspect(w io.Writer, prefix string) {
 
 // CheckPassword validate password string
 func CheckPassword(passwd string) error {
-	if len(passwd) < 6 {
+	if len(passwd) < 5 { // 降低对位数的要求
 		return errPasswordTooShort
 	}
 	return nil
