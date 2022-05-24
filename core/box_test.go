@@ -93,7 +93,7 @@ func TestEncryptDecrypt(t *testing.T) {
 	box := NewBox(NewMemRepository([]byte{}))
 	box.masterPassword = "123456"
 
-	box.encrypt(pw)
+	box.encrypt(pw, nil)
 
 	wantCipherAccount := []byte{228, 58, 249, 147, 129, 167, 175}
 	wantCipherPassword := []byte{158, 190, 63, 132, 121, 169, 38, 195}
@@ -107,7 +107,7 @@ func TestEncryptDecrypt(t *testing.T) {
 	pw.PlainAccount = ""
 	pw.PlainPassword = ""
 
-	box.decrypt(pw)
+	box.decrypt(pw, nil)
 	if pw.PlainAccount != "account" {
 		t.Errorf("PlainAccount want %s, got %s", "account", pw.PlainAccount)
 	}
@@ -141,7 +141,7 @@ func TestAdd(t *testing.T) {
 		wantPlainAccount, wantPlainPassword := pw.PlainAccount, pw.PlainPassword
 		pw.PlainAccount = ""
 		pw.PlainPassword = ""
-		box.decrypt(pw)
+		box.decrypt(pw, nil)
 		if pw.PlainAccount != wantPlainAccount {
 			t.Errorf("PlainAccount want %s, got %s", wantPlainAccount, pw.PlainAccount)
 		}

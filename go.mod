@@ -8,5 +8,6 @@ require (
 	github.com/mattn/go-colorable v0.1.7
 	github.com/mkideal/cli v0.2.2
 	github.com/mkideal/pkg v0.1.2
-	golang.org/x/crypto v0.0.0-20200709230013-948cd5f35899
+	github.com/xuri/excelize/v2 v2.6.0
+	golang.org/x/crypto v0.0.0-20220408190544-5352b0902921
 )

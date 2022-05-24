@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/mkideal/onepw/data"
 	"os"
 	"path/filepath"
 	"strings"
@@ -20,6 +21,7 @@ func init() {
 		cli.Tree(helpCommand),
 		cli.Tree(initCommand),
 		cli.Tree(setCommand),
+		cli.Tree(importCommand),
 		cli.Tree(removeCommand),
 		cli.Tree(listCommand),
 		cli.Tree(findCommand),
@@ -235,6 +237,57 @@ var setCommand = &cli.Command{
 		} else {
 			ctx.String("password %s updated\n", ctx.Color().Cyan(id))
 		}
+		return nil
+	},
+}
+
+//--------
+// import
+//--------
+type importCommandT struct {
+	cli.Helper2
+	Config
+	NotesPath string `cli:"n,notes" usage:"need import notes path" dft:"notes.xlsx"`
+}
+
+func (argv *importCommandT) Validate(ctx *cli.Context) error {
+	if argv.NotesPath == "" {
+		return fmt.Errorf("notes path is empty")
+	}
+	return nil
+}
+
+var importCommand = &cli.Command{
+	Name: "import",
+	Desc: "import notes.xlsx to onepw password data",
+	Argv: func() interface{} {
+		return new(importCommandT)
+	},
+
+	Fn: func(ctx *cli.Context) error {
+		argv := ctx.Argv().(*importCommandT)
+
+		passwordItems, err := data.GetData(argv.NotesPath)
+		if err != nil {
+			return err
+		}
+
+		failed := make([]string, 0)
+		// for loop add password item
+		for i := 0; i < len(passwordItems); i++ {
+			item := passwordItems[i]
+			newPassword := core.NewPassword(item.Category, item.Account, item.Password, item.Site)
+			_, _, err = box.Add(newPassword)
+			if err != nil {
+				fmt.Fprintf(ctx, "add password item: %+v err: %+v", item, err)
+				failed = append(failed, item.Account)
+				continue
+			}
+		}
+		if len(failed) > 0 {
+			fmt.Fprintf(ctx, "add password item failed len: %+v", len(failed))
+		}
+
 		return nil
 	},
 }
