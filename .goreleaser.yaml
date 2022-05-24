@@ -1,0 +1,29 @@
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+project_name: onepw
+
+env:
+  - GO111MODULE=on
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - main: .
+    binary: mypw
+    env:
+      - PKG=github.com/mkideal/pkg/build
+    ldflags: '-s -w -X {{ .Env.PKG }}.version={{.Version}}
+    -X {{ .Env.PKG }}.commit={{.ShortCommit}}
+    -X {{ .Env.PKG }}.date={{.Date}}'
+    goos:
+      - linux
+      - windows
+      - darwin
+archives:
+  - files:
+      - README.md
+    format_overrides:
+      - goos: windows
+        format: zip
+release:
+  prerelease: auto
