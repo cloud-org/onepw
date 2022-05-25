@@ -1,4 +1,4 @@
-## onepw [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/mkideal/onepw/master/LICENSE) [![Go Report Card](https://goreportcard.com/badge/github.com/mkideal/onepw)](https://goreportcard.com/report/github.com/mkideal/onepw)
+## onepw [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/cloud-org/onepw/master/LICENSE) [![Go Report Card](https://goreportcard.com/badge/github.com/cloud-org/onepw)](https://goreportcard.com/report/github.com/cloud-org/onepw)
 
 ### Install
 

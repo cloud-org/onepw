@@ -41,7 +41,7 @@ type Configure interface {
 	Debug() bool
 }
 
-// Config implementes Configure interface, represents onepw config
+// Config implements Configure interface, represents onepw config
 type Config struct {
 	Master      string `pw:"master" usage:"Your master password" dft:"$ONEPW_MASTER" prompt:"Type the master password"`
 	EnableDebug bool   `cli:"debug" usage:"Enable debug mode" dft:"false"`

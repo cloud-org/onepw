@@ -571,10 +571,6 @@ func (box *Box) decrypt(pw *Password, dk []byte) error {
 			return err
 		}
 	}
-	dk, err := derivedKey(box.masterPassword, box.store.Salt)
-	if err != nil {
-		return err
-	}
 	block, err := aes.NewCipher(dk)
 	if err != nil {
 		return err

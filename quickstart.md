@@ -92,6 +92,21 @@ type the password:
 repeat the password:
 ```
 
+### import - `import notes.xlsx to onepw password data`
+
+```sh
+Options:
+
+  -h, --help                     Display help information
+      --master[=$ONEPW_MASTER]   Your master password
+      --debug[=false]            Enable debug mode
+  -n, --notes[=notes.xlsx]       need import notes path
+```
+
+```sh
+$> onepw import -n notes.xlsx
+```
+
 ### list - `list all passwords, aliases ls`
 
 ```sh
