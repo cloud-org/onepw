@@ -351,10 +351,12 @@ func (box *Box) List(w io.Writer, noHeader, showHidden bool) error {
 		return errEmptyMasterPassword
 	}
 	var table textutil.Table
-	table = passwordSlice(box.sortedPasswords(showHidden))
+	passwordData := box.sortedPasswords(showHidden)
+	table = passwordSlice(passwordData)
 	if !noHeader {
 		table = textutil.AddTableHeader(table, passwordHeader)
 	}
+	fmt.Fprintf(w, "数据库现存密码总数: %v\n", len(passwordData))
 	textutil.WriteTable(w, table, box.colorID(w, !noHeader))
 	return nil
 }

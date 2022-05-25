@@ -22,6 +22,9 @@ builds:
 archives:
   - files:
       - README.md
+      - CHANGELOG.md
+      - quickstart.md
+      - notes.xlsx
     format_overrides:
       - goos: windows
         format: zip

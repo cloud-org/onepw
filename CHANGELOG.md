@@ -1,9 +1,9 @@
 CHANGELOG
 =========
 
-# HEAD
+# v0.3.0
 
-* Using crypto/rand instead of math/rand for generating password.
+* add `import` command, check issue [#1](https://github.com/cloud-org/onepw/issues/1)
 
 # v0.2.0
 
